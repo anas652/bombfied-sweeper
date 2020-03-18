@@ -24,7 +24,7 @@ def createbombfield(bombfield):
 				rowlist.append(0)
 				squarestoclear = squarestoclear + 1
 		bombfield.append(rowlist)
-	# printfield(bombfield)
+	#printfield(bombfield)
 
 
 def printfield(bombfield):
@@ -53,10 +53,29 @@ def on_click(event):
 	global game_over
 	global squarestoclear
 	square = event.widget
-
 	row = int(square.grid_info()["row"])
-
 	column = int(square.grid_info()["column"])
+	currentText = square.cget("text")
+	if game_over == False:
+
+		if bombfield[row][column] == 1:
+			
+			game_over = True
+			square.config(bg = "red")
+			print("Game over you hit a bomb!")
+			print("your score was:", score)
+		elif currentText == "    ":
+			square.config(bg = "brown")
+			totalBombs = 0
+
+
+
+
+
+		#elif bombfield[row][column] == 0:
+			#score = score+1
+			#squarestoclear = squarestoclear-
+
 
 
 
