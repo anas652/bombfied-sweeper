@@ -47,7 +47,7 @@ def layout_window(window):
 			square.grid(row = rowNumber, column = columnNumber)
 			square.bind("<Button-1>", on_click) 
 
-
+			
 def on_click(event):
 	global score
 	global game_over
@@ -67,14 +67,41 @@ def on_click(event):
 		elif currentText == "    ":
 			square.config(bg = "brown")
 			totalBombs = 0
+			if row < 9:
+				if bombfield[row+1][column] == 1:
+					totalBombs = totalBombs + 1 
+			if row > 0:
+				if bombfield[row-1][column] == 1:
+					totalBombs = totalBombs+1
+			if column > 0:
+				if bombfield[row][column-1] == 1:
+					totalBombs = totalBombs+1
+			if column < 9:
+				if bombfield[row][column+1] == 1:
+					totalBombs = totalBombs+1
+			if row > 0 and column > 0:
+				if bombfield[row-1][column-1] == 1:
+					totalBombs = totalBombs+1
+			if row < 9 and column > 0:
+				if bombfield[row+1][column-1] == 1:
+					totalBombs = totalBombs+1
+			if row > 0 and column < 9:
+				if bombfield[row-1][column+1] == 1:
+					totalBombs = totalBombs + 1
+			if row < 9 and column < 9:
+				if bombfield[row+1][column+1] == 1:
+					totalBombs = totalBombs+1
+			square.config(text = " " + str(totalBombs) + " ")
+			
+		 	score = score+1
+			squarestoclear = squarestoclear-1
+			
+			if squarestoclear == 0:
+				game_over = True
+				print("Well done! You found all the safe squares!")
+				print("Your score was:", score)
 
 
-
-
-
-		#elif bombfield[row][column] == 0:
-			#score = score+1
-			#squarestoclear = squarestoclear-
 
 
 
